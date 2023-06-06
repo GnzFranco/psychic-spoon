@@ -5,7 +5,7 @@ const app = new Application({
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
 	backgroundColor: 0x6595ed,
-	width: 640,
+	width: 650,
 	height: 480
 });
 
@@ -14,11 +14,18 @@ Assets.add("Mega", "./mega1.png");
 
 Assets.load(["Clampy", "Mega"]).then(()=>{
 
-	const clampy: Sprite = Sprite.from("Mega");
-	console.log ("Hola mundo!", clampy.width, clampy.height);
+	const pj: Sprite = Sprite.from("Mega");
+	//const pj2: Sprite = Sprite.from("Clampy");
 
-	app.stage.addChild(clampy);
+	pj.anchor.set(0.5);
 
+	pj.x = app.screen.width /2;
+	pj.y = app.screen.height /2;
+
+	console.log ("Hola mundo!", pj.width, pj.height);
+
+	app.stage.addChild(pj);
+	//app.stage.addChild(pj2);
 });
 
 Assets.load;
