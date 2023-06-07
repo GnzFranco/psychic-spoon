@@ -1,4 +1,4 @@
-import { Application, Assets, Sprite } from 'pixi.js'
+import { Application, Assets, Container, Point, Sprite } from 'pixi.js'
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
@@ -33,26 +33,44 @@ window.addEventListener("resize", ()=>{
 });
 window.dispatchEvent(new Event("resize"));
 
-
-
 Assets.add("Clampy", "./clampy.png");
 Assets.add("Mega", "./mega1.png");
 Assets.add("Dino", "./dino1.png");
+Assets.add("Hat", "./hat.png");
 
-Assets.load(["Clampy", "Mega", "Dino"]).then(()=>{
+Assets.load(["Clampy", "Mega", "Dino", "Hat"]).then(()=>{
 
-	const pj: Sprite = Sprite.from("Dino");
-	//const pj2: Sprite = Sprite.from("Clampy");
+	
+	const hat: Sprite = Sprite.from("Hat");
+	/* hat.anchor.set(0.5); */
+	hat.position.set(250, 50);
+	hat.scale.set(0.15, 0.15);
+	hat.angle=-15;
 
-	pj.anchor.set(0.5);
 
-	pj.x = app.screen.width /3;
-	pj.y = app.screen.height /2;
+	const dino: Sprite = Sprite.from("Dino");
+	/* dino.anchor.set(0.5);
+	dino.x = app.screen.width /3;
+	dino.y = app.screen.height /2;
+	dino.scale.x = 1;
+	dino.scale.y = 1; */
 
-	console.log ("Hola mundo!", pj.width, pj.height);
 
-	app.stage.addChild(pj);
-	//app.stage.addChild(pj2);
+	const dinoWithHat: Container = new Container();
+
+	dinoWithHat.addChild(dino);
+	dinoWithHat.addChild(hat);
+
+	dinoWithHat.scale.set(1);
+	dinoWithHat.x = 200;
+	dinoWithHat.y = 300;
+
+	console.log(hat.toGlobal(new Point()));		//gorro decime donde queda tu origen
+	console.log(hat.parent.toGlobal(hat.position));   //padre del gorro, decime la posicion en global
+
+
+
+	app.stage.addChild(dinoWithHat);
 });
 
 Assets.load;
