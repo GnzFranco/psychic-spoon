@@ -74,4 +74,3 @@ Assets.load(["Clampy", "Mega", "Dino", "Hat"]).then(()=>{
 });
 
 Assets.load;
-
