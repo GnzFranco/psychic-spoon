@@ -1,4 +1,9 @@
-import { Application, Assets, Container, Point, Sprite } from 'pixi.js'
+import { Application, Assets, BaseTexture, SCALE_MODES } from 'pixi.js'
+import { assets } from './assets';
+import { Scene } from './Scene';
+
+
+BaseTexture.defaultOptions.scaleMode = SCALE_MODES.NEAREST;
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
@@ -31,46 +36,14 @@ window.addEventListener("resize", ()=>{
 	canvas.style.marginTop = marginVertical + "px";
 	canvas.style.marginBottom = marginVertical + "px";
 });
+
 window.dispatchEvent(new Event("resize"));
 
-Assets.add("Clampy", "./clampy.png");
-Assets.add("Mega", "./mega1.png");
-Assets.add("Dino", "./dino1.png");
-Assets.add("Hat", "./hat.png");
+Assets.addBundle("myAssets", assets);
 
-Assets.load(["Clampy", "Mega", "Dino", "Hat"]).then(()=>{
-
-	
-	const hat: Sprite = Sprite.from("Hat");
-	/* hat.anchor.set(0.5); */
-	hat.position.set(250, 50);
-	hat.scale.set(0.15, 0.15);
-	hat.angle=-15;
-
-
-	const dino: Sprite = Sprite.from("Dino");
-	/* dino.anchor.set(0.5);
-	dino.x = app.screen.width /3;
-	dino.y = app.screen.height /2;
-	dino.scale.x = 1;
-	dino.scale.y = 1; */
-
-
-	const dinoWithHat: Container = new Container();
-
-	dinoWithHat.addChild(dino);
-	dinoWithHat.addChild(hat);
-
-	dinoWithHat.scale.set(1);
-	dinoWithHat.x = 200;
-	dinoWithHat.y = 300;
-
-	console.log(hat.toGlobal(new Point()));		//gorro decime donde queda tu origen
-	console.log(hat.parent.toGlobal(hat.position));   //padre del gorro, decime la posicion en global
-
-
-
-	app.stage.addChild(dinoWithHat);
+Assets.loadBundle(["myAssets"]).then(()=>{
+	const myScene = new Scene();
+	app.stage.addChild(myScene);
 });
 
 Assets.load;
