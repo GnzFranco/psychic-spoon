@@ -5,27 +5,75 @@ export class Scene extends Container {
 
     constructor(){
         super();
+
+        //NINE-SLICE PLANE
+        //const panel = Sprite.from("Panel");
+        const panel = new NineSlicePlane(
+            Texture.from("Panel"),
+            35, 35, 35, 35
+        );
+        panel.width = 500;
+        panel.height = 300;
+        panel.scale.set(2);
+        panel.position.x = 100;
+        panel.position.y = 100;
+
+        this.addChild(panel);
         
         //CONTAINER
         const dinoWithHat: DinoHat = new DinoHat();
-        dinoWithHat.scale.set(1);
-        dinoWithHat.x = 200;
-        dinoWithHat.y = 300;
+        dinoWithHat.scale.set(8);
+        dinoWithHat.x = 190;
+        dinoWithHat.y = 175;
         this.addChild(dinoWithHat);
 
-        //ANIMACION DINO
-        const dinoAnimated: AnimatedSprite = new AnimatedSprite(
+        //ANIMACION DINO RUN
+        const dinoAnimatedRun: AnimatedSprite = new AnimatedSprite(
             [
-                
+                Texture.from("DinoMove1"),
                 Texture.from("DinoMove2"),
                 Texture.from("DinoMove3"),
                 Texture.from("DinoMove4")
             ],
             true
         );
-        dinoAnimated.play();
-        dinoAnimated.animationSpeed = 0.15
-        this.addChild(dinoAnimated);
+        dinoAnimatedRun.play();
+        dinoAnimatedRun.animationSpeed = 0.13
+        dinoAnimatedRun.scale.set(8);
+        dinoAnimatedRun.x = 400;
+        dinoAnimatedRun.y = 90;
+        this.addChild(dinoAnimatedRun);
+
+        //ANIMACION DINO IDLE
+        const dinoAnimatedIdle: AnimatedSprite = new AnimatedSprite(
+            [
+                Texture.from("DinoIdle1"),
+                Texture.from("DinoIdle2"),
+                Texture.from("DinoIdle3")
+            ]
+        );
+        dinoAnimatedIdle.play();
+        dinoAnimatedIdle.scale.set(8);
+        dinoAnimatedIdle.x = 250;
+        dinoAnimatedIdle.y = 90;
+        dinoAnimatedIdle.animationSpeed = 0.07;
+        this.addChild(dinoAnimatedIdle);
+
+        //ANIMACION DINO SALTAR
+        const dinoAnimatedJump: AnimatedSprite = new AnimatedSprite(
+            [
+                Texture.from("DinoJump1"),
+                Texture.from("DinoJump2"),
+                Texture.from("DinoJump3"),
+                Texture.from("DinoJump4")
+            ]
+        );
+        dinoAnimatedJump.play();
+        dinoAnimatedJump.scale.set(8);
+        dinoAnimatedJump.x = 525;
+        dinoAnimatedJump.y = 105;
+        dinoAnimatedJump.animationSpeed = 0.07;
+        this.addChild(dinoAnimatedJump);
 
         // GRAFICOS
         const myGraph: Graphics = new Graphics();
@@ -47,19 +95,7 @@ export class Scene extends Container {
         this.addChild(myText);
 
 
-        //NINE-SLICE PLANE
-        //const panel = Sprite.from("Panel");
-        const panel = new NineSlicePlane(
-            Texture.from("Panel"),
-            35, 35, 35, 35
-        );
-        panel.width = 500;
-        panel.height = 300;
-        panel.scale.set(2);
-        panel.position.x = 100;
-        panel.position.y = 100;
-
-        this.addChild(panel);
+        
 
 
 
