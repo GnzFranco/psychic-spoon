@@ -1,10 +1,18 @@
-import { AnimatedSprite, Container, Texture, NineSlicePlane} from "pixi.js";
-import { DinoHat } from "./DinoHat";
+import { Container, Texture, NineSlicePlane, AnimatedSprite } from "pixi.js";
+import { KuroMove } from "./KuroMove";
+import { Background } from "./Background";
 
 export class Scene extends Container {
 
     constructor(){
         super();
+
+        //BACKGROUND
+        const background: Background = new Background();
+        background.width = 1920;
+        background.height = 1080;
+        this.addChild(background);
+
 
         //NINE-SLICE PLANE
         //const panel = Sprite.from("Panel");
@@ -12,86 +20,54 @@ export class Scene extends Container {
             Texture.from("Panel"),
             35, 35, 35, 35
         );
-        panel.width = 500;
-        panel.height = 300;
+        panel.width = 200;
+        panel.height = 100;
         panel.scale.set(2);
         panel.position.x = 100;
         panel.position.y = 100;
 
         this.addChild(panel);
         
-        //CONTAINER
-        const dinoWithHat: DinoHat = new DinoHat();
-        dinoWithHat.scale.set(8);
-        dinoWithHat.x = 190;
-        dinoWithHat.y = 175;
-        this.addChild(dinoWithHat);
-
-        //ANIMACION DINO RUN
-        const dinoAnimatedRun: AnimatedSprite = new AnimatedSprite(
-            [
-                Texture.from("DinoMove1"),
-                Texture.from("DinoMove2"),
-                Texture.from("DinoMove3"),
-                Texture.from("DinoMove4")
-            ],
-            true
+        //MENU
+        const menu = new NineSlicePlane(
+            Texture.from("Menu"),
+            35, 35, 35, 35
         );
-        dinoAnimatedRun.play();
-        dinoAnimatedRun.animationSpeed = 0.13
-        dinoAnimatedRun.scale.set(8);
-        dinoAnimatedRun.x = 400;
-        dinoAnimatedRun.y = 90;
-        this.addChild(dinoAnimatedRun);
+        menu.width = 370;
+        menu.height = 600;
+        menu.scale.set(1);
+        menu.position.x = 1300;
+        menu.position.y = 100;
+        this.addChild(menu);
 
-        //ANIMACION DINO IDLE
-        const dinoAnimatedIdle: AnimatedSprite = new AnimatedSprite(
+        //BOTON START
+        const btstart: AnimatedSprite = new AnimatedSprite(
             [
-                Texture.from("DinoIdle1"),
-                Texture.from("DinoIdle2"),
-                Texture.from("DinoIdle3")
+                Texture.from("BtStart1"),
+                Texture.from("BtStart2"),
+                Texture.from("BtStart3"),
             ]
         );
-        dinoAnimatedIdle.play();
-        dinoAnimatedIdle.scale.set(8);
-        dinoAnimatedIdle.x = 250;
-        dinoAnimatedIdle.y = 90;
-        dinoAnimatedIdle.animationSpeed = 0.07;
-        this.addChild(dinoAnimatedIdle);
+        btstart.play();
+        btstart.animationSpeed = 0.07;
+        btstart.position.set(1415, 300);
+        btstart.scale.set(2.2)
+        this.addChild(btstart);
 
-        //ANIMACION DINO SALTAR
-        const dinoAnimatedJump: AnimatedSprite = new AnimatedSprite(
-            [
-                Texture.from("DinoJump1"),
-                Texture.from("DinoJump2"),
-                Texture.from("DinoJump3"),
-                Texture.from("DinoJump4")
-            ]
-        );
-        dinoAnimatedJump.play();
-        dinoAnimatedJump.scale.set(8);
-        dinoAnimatedJump.x = 525;
-        dinoAnimatedJump.y = 105;
-        dinoAnimatedJump.animationSpeed = 0.07;
-        this.addChild(dinoAnimatedJump);
 
-        //KURO MOVE
-        const kuroAnimatedMove: AnimatedSprite = new AnimatedSprite(
-            [
-                Texture.from("KuroMove1"),
-                Texture.from("KuroMove2"),
-                Texture.from("KuroMove3"),
-                Texture.from("KuroMove4"),
-                Texture.from("KuroMove5"),
-                Texture.from("KuroMove6"),
-            ]
-        );
-        kuroAnimatedMove.play();
-        kuroAnimatedMove.scale.set(8);
-        kuroAnimatedMove.x = 670;
-        kuroAnimatedMove.y = 90;
-        kuroAnimatedMove.animationSpeed = 0.2;
-        this.addChild(kuroAnimatedMove);
+        //KURO MOVE SOLO EL LLAMADO, SE HACE TODO EN LA CLASE KUROMOVE.TS
+        const kuroMove: KuroMove = new KuroMove();
+        this.addChild(kuroMove);
+
+
+
+
+
+
+
+
+
+
 
         // GRAFICOS
         /* const myGraph: Graphics = new Graphics();
@@ -111,11 +87,6 @@ export class Scene extends Container {
         myText.text = "hola";
         myText.position.set(1000, 500);
         this.addChild(myText); */
-
-
-        
-
-
 
     }
 }
