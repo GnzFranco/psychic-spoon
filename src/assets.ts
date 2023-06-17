@@ -17,5 +17,11 @@ export const assets = {
     DinoJump2: "./dino/jump2.png",
     DinoJump3: "./dino/jump3.png",
     DinoJump4: "./dino/jump4.png",
-    Panel: "./ui/tan.png"
+    Panel: "./ui/tan.png",
+    KuroMove1: "./dino/kuroMove1.png",
+    KuroMove2: "./dino/kuroMove2.png",
+    KuroMove3: "./dino/kuroMove3.png",
+    KuroMove4: "./dino/kuroMove4.png",
+    KuroMove5: "./dino/kuroMove5.png",
+    KuroMove6: "./dino/kuroMove6.png"
 };

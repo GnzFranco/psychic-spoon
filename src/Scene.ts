@@ -1,4 +1,4 @@
-import { AnimatedSprite, Container, Graphics, Texture, Text, NineSlicePlane} from "pixi.js";
+import { AnimatedSprite, Container, Texture, NineSlicePlane} from "pixi.js";
 import { DinoHat } from "./DinoHat";
 
 export class Scene extends Container {
@@ -75,8 +75,26 @@ export class Scene extends Container {
         dinoAnimatedJump.animationSpeed = 0.07;
         this.addChild(dinoAnimatedJump);
 
+        //KURO MOVE
+        const kuroAnimatedMove: AnimatedSprite = new AnimatedSprite(
+            [
+                Texture.from("KuroMove1"),
+                Texture.from("KuroMove2"),
+                Texture.from("KuroMove3"),
+                Texture.from("KuroMove4"),
+                Texture.from("KuroMove5"),
+                Texture.from("KuroMove6"),
+            ]
+        );
+        kuroAnimatedMove.play();
+        kuroAnimatedMove.scale.set(8);
+        kuroAnimatedMove.x = 670;
+        kuroAnimatedMove.y = 90;
+        kuroAnimatedMove.animationSpeed = 0.2;
+        this.addChild(kuroAnimatedMove);
+
         // GRAFICOS
-        const myGraph: Graphics = new Graphics();
+        /* const myGraph: Graphics = new Graphics();
             myGraph.lineStyle({color: 0x222222, width: 6, alpha: 1});
             myGraph.moveTo(0,0);
             myGraph.lineTo(300, 200);
@@ -85,14 +103,14 @@ export class Scene extends Container {
 
             myGraph.position.set(1920/2, 1080/2);
 
-            this.addChild(myGraph);
+            this.addChild(myGraph); */
 
 
         //TEXT
-        const myText: Text = new Text("Hello world", {fontSize: 42, fontFamily: "Arial"});
+        /* const myText: Text = new Text("Hello world", {fontSize: 42, fontFamily: "Arial"});
         myText.text = "hola";
         myText.position.set(1000, 500);
-        this.addChild(myText);
+        this.addChild(myText); */
 
 
         
